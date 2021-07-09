@@ -1,0 +1,41 @@
+<% layout ('./layouts/boilerplate') %>
+    <div class="row">
+        <h1 class="text-center">New Tourism Service</h1>
+        <div class="col-md-6 offset-md-3">
+            <form action="/tourisms" method="POST" novalidate class="validated-form">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title: </label>
+                    <input type="text" id="title" name="tourism[title]" class="form-control" required>
+                    <div class="valid-feedback">Looks good</div>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price: </label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="price-label">@</span>
+                        <input type="number" id="price" name="tourism[price]" class="form-control" placeholder="0"
+                            aria-label="price" aria-describedby="price-label" required>
+                        <div class="valid-feedback">Looks good</div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image Url : </label>
+                    <input type="text" id="image" name="tourism[image]" class="form-control" required>
+                    <div class="valid-feedback">Looks good</div>
+                </div>
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location : </label>
+                    <input type="text" id="location" name="tourism[location]" class="form-control" required>
+                    <div class="valid-feedback">Looks good</div>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description :</label>
+                    <textarea type="text" id="description" name="tourism[description]" class="form-control"
+                        required></textarea>
+                    <div class="valid-feedback">Looks groot</div>
+                </div>
+                <div class="mb-3"></div>
+                <button class="btn btn-primary">Add</button>
+            </form>
+            <div><a href="/tourisms">All Tourism Services</a></div>
+        </div>

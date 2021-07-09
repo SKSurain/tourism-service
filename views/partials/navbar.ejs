@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top ">
+    <a class="navbar-brand ps-2" href="#">Tourism Service</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse ps-3" id="navbarNavAltMarkup">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+            <li class="nav-item"><a class="nav-link " href="/tourisms">All Tourism Service</a></li>
+            <li class="nav-item"><a class="nav-link" href="/tourisms/new">Add New Tourism Service</a></li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+            <% if(!currentUser){ %>
+                <li class="nav-item"><a href="/login" class="nav-link">Login</a></li>
+                <li class="nav-item"><a href="/register" class="nav-link">Register</a></li>
+                <% } else {%>
+                    <li class="nav-item"><a href="/logout" class="nav-link">Logout</a></li>
+                    <% } %>
+        </ul>
+    </div>
+</nav>

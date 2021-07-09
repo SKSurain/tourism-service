@@ -1,0 +1,29 @@
+<% layout ('./layouts/boilerplate') %>
+    <h1>All Tourisms</h1>
+    <div> <a href="tourisms/new">New Tourism</a></div>
+
+
+    <% for (let tourism of tourisms){ %>
+
+        <div class="card mb-3">
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="<%=tourism.image%>" class="img-fluid" alt="image">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%=tourism.title%>
+                        </h5>
+                        <p class="card-text">
+                            <%=tourism.description%>
+                        </p>
+                        <p class="card-text"><small class="text-muted">
+                                <%=tourism.location%>
+                            </small></p>
+                        <a href="/tourisms/<%=tourism._id %>" class="btn btn-primary">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%} %>

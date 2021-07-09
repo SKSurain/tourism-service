@@ -1,0 +1,97 @@
+<% layout ('./layouts/boilerplate') %>
+    <link rel="stylesheet" href="/stylesheets/stars.css">
+
+    <div class="row">
+        <div class="col-6">
+            <div class="card mb-3">
+                <img src="<%= tourism.image %>" alt="">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= tourism.title %>
+                    </h5>
+                    <p class="card-text">
+                        <%= tourism.description %>
+                    </p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-muted">
+                        <%= tourism.location %>
+                    </li>
+                    <li class="list-group-item ">
+                        Submitted by <%= tourism.author.username %>
+                    </li>
+                    <li class="list-group-item">
+                        $<%= tourism.price %>/per session
+                    </li>
+                </ul>
+                <% if(currentUser && tourism.author.equals(currentUser._id)) { %>
+                    <div class="card-body">
+                        <a href="/tourisms/<%=tourism._id%>/edit" class="card-link btn btn-info">Edit</a>
+                        <form class="d-inline" action="/tourisms/<%=tourism._id%>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                    <% } %>
+                        <div class="card-footer text-muted">
+                            2 days ago
+                            <a href="/tourisms">All Tourisms</a>
+                        </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <% if(currentUser){ %>
+                <h2>Leave a Review</h2>
+                <form action="/tourisms/<%=tourism._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
+                    <div class="mb-3">
+                        <fieldset class="starability-basic">
+                            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1"
+                                checked aria-label="true">
+                            <input type="radio" id="first-rate1" name="review[rating]" value="1">
+                            <label for="first-rate1" title="Terrible">1 star</label>
+                            <input type="radio" id="first-rate2" name="review[rating]" value="2">
+                            <label for="first-rate2" title="Terrible">2 star</label>
+                            <input type="radio" id="first-rate3" name="review[rating]" value="3">
+                            <label for="first-rate3" title="Terrible">3 star</label>
+                            <input type="radio" id="first-rate4" name="review[rating]" value="4">
+                            <label for="first-rate4" title="Terrible">4 star</label>
+                            <input type="radio" id="first-rate5" name="review[rating]" value="5">
+                            <label for="first-rate5" title="Terrible">5 star</label>
+                        </fieldset>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="body">Review</label>
+                        <textarea class="form-control" name="review[body]" id="body" cols="30" rows="10"
+                            required></textarea>
+                        <div class="valid-feedback">Looks good!</div>
+                    </div>
+                    <button class="btn btn-success">Submit</button>
+                </form>
+                <% } %>
+                    <% for(let review of tourism.reviews) { %>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title mb-2">
+                                    <%=review.author.username %>
+                                </h5>
+                                <p class="starability-result" data-rating="<%= review.rating %>">
+                                    Rated: <%= review.rating %> stars
+                                </p>
+
+                                <p class="card-text">
+                                    <%= review.body%>
+                                </p>
+
+                                <p>
+
+                                </p>
+                                <% if(currentUser && currentUser.equals(review.author._id)) {%>
+                                    <form action="/tourisms/<%=tourism._id%>/reviews/<%=review._id%>?_method=DELETE"
+                                        method="POST">
+                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                    <% }%>
+                            </div>
+                        </div>
+                        <% }%>
+        </div>
+    </div>
